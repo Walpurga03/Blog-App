@@ -1,0 +1,21 @@
+@use "sass:color";
+
+// Hauptfarben aus dem Logo
+$color-primary: #ff7c2d; // Orange als Primärfarbe
+$color-secondary: #22223b; // Dunkelblau als Sekundärfarbe
+$color-accent: #ff8c3b; // Leicht helleres Orange für Akzente
+
+// Hintergrundfarben
+$color-bg: #f3f4f6; // Hellgrauer Hintergrund
+$color-bg-card: #ffffff; // Weiß für Karten
+$color-bg-dark: #1a1a2e; // Dunklerer Hintergrund für Kontrast
+
+// Textfarben
+$color-text: #333344; // Dunkelgrau für normalen Text
+$color-text-light: #ffffff; // Weißer Text für dunkle Hintergründe
+$color-header: #22223b; // Dunkelblau für Überschriften
+
+// Effektfarben
+$color-border: $color-accent; // Gleiche Farbe wie Akzent für Rahmen
+$color-shadow: rgba(255, 124, 45, 0.10); // Leichter Schatten in Orange
+$color-hover: rgba(226, 91, 23, 1); // Dunkleres Orange für Hover-Effekte
