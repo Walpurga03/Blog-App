@@ -1,0 +1,88 @@
+@use "../../styles/variables.scss" as vars;
+
+.improved-card-slider-container {
+  height: 70vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+  overflow: hidden;
+  
+  .slider {
+    position: relative;
+    width: 350px;
+    height: 500px;
+    transform-style: preserve-3d;
+    transform: rotateX(25deg);
+    cursor: pointer;
+  }
+  
+  .card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.7s cubic-bezier(0.83, 0, 0.17, 1);
+    
+    &:hover {
+      transform: translateZ(20px) scale(1.05);
+    }
+    
+    &.active {
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .card-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 30px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+      text-decoration: none;
+      
+      .title-container {
+        overflow: hidden;
+        
+        h3 {
+          color: #fff;
+          font-size: 1.5rem;
+          margin: 0;
+          transform-origin: center left;
+          transition: transform 0.8s cubic-bezier(0.83, 0, 0.17, 1);
+          
+          &.show-title {
+            transform: translateY(0);
+          }
+          
+          &.hide-title {
+            transform: translateY(100%);
+          }
+        }
+      }
+    }
+  }
+  
+  // Angepasste Farben für verschiedene Kartentypen
+  .card:nth-child(1) .card-image {
+    filter: hue-rotate(0deg);
+  }
+  
+  .card:nth-child(2) .card-image {
+    filter: hue-rotate(15deg);
+  }
+  
+  .card:nth-child(3) .card-image {
+    filter: hue-rotate(-15deg);
+  }
+}

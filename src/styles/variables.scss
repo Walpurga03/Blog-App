@@ -2,6 +2,7 @@
 
 // Hauptfarben aus dem Logo
 $color-primary: #ff7c2d; // Orange als Primärfarbe
+$color-primary-rgb: 255, 124, 45; // RGB-Werte von Primary für Transparenz-Effekte
 $color-secondary: #22223b; // Dunkelblau als Sekundärfarbe
 $color-accent: #ff8c3b; // Leicht helleres Orange für Akzente
 
@@ -13,6 +14,7 @@ $color-bg-dark: #1a1a2e; // Dunklerer Hintergrund für Kontrast
 // Textfarben
 $color-text: #333344; // Dunkelgrau für normalen Text
 $color-text-light: #ffffff; // Weißer Text für dunkle Hintergründe
+$color-text-muted: #777788; // Gedämpfter Text für weniger wichtige Elemente
 $color-header: #22223b; // Dunkelblau für Überschriften
 
 // Effektfarben

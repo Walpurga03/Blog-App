@@ -1,0 +1,333 @@
+@use "../../styles/themes.scss" as vars;
+
+.professional-card-slider-container {
+  position: relative;
+  height: 65vh;
+  min-height: 550px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  perspective: 1500px;
+  overflow: visible;
+  padding: 50px 0;
+  
+  // Controls for the slider (prev/next and dots)
+  .slider-controls {
+    position: relative;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 320px;
+    margin-bottom: 30px;
+    
+    .control-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: white;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      
+      [data-theme="dark"] & {
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      }
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+        
+        [data-theme="dark"] & {
+          background: rgba(255, 255, 255, 0.2);
+        }
+      }
+      
+      &:active {
+        transform: translateY(0);
+      }
+    }
+    
+    .pagination {
+      display: flex;
+      gap: 8px;
+      
+      .pagination-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 0;
+        
+        [data-theme="dark"] & {
+          background: rgba(255, 255, 255, 0.2);
+        }
+        
+        &.active {
+          background: white;
+          transform: scale(1.2);
+          box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+          
+          [data-theme="dark"] & {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+          }
+        }
+      }
+    }
+  }
+  
+  // 3D scene container
+  .slider-scene {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    transform-style: preserve-3d;
+    transform: rotateX(30deg);
+    user-select: none;
+  }
+  
+  // Slider itself
+  .slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-out;
+    
+    &.is-animating {
+      pointer-events: none;
+    }
+  }
+  
+  // Individual cards
+  .card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    backface-visibility: hidden;
+    transform-origin: bottom center;
+    will-change: transform, opacity;
+    
+    &.active {
+      cursor: pointer;
+      
+      .card-content {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .title-wrapper h3 {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      
+      .title-wrapper .blog-description {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      
+      .card-details {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    &:not(.active) {
+      pointer-events: none;
+    }
+    
+    // Card container (for 3D transforms)
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      border-radius: 8px; // Geringerer Radius für einen mehr quadratischen Look
+      overflow: hidden;
+      box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        0 15px 50px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+    
+    // Front face of card
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 8px; // Konsistenter Radius mit card-inner
+      overflow: hidden;
+      background-color: #1a1a1a; // Fallback background color
+      
+      // Ensure cards maintain shape even during transitions
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+        pointer-events: none;
+      }
+    }
+    
+    // Image styling
+    .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; // Fill the square completely
+      object-position: center;
+      display: block;
+      transform: scale(1.05); // Slightly scaled to prevent edge showing during transitions
+      background-color: #1a1a1a; // Fallback background
+    }
+    
+    // Dark overlay for better text readability
+    .card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(0, 0, 0, 0.8) 20%,
+        rgba(0, 0, 0, 0.6) 40%,
+        rgba(0, 0, 0, 0.2) 70%,
+        rgba(0, 0, 0, 0) 100%
+      );
+    }
+    
+    // Content container
+    .card-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 25px 20px;
+      color: white;
+      text-decoration: none;
+      z-index: 2;
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(10px);
+      
+      // Title container
+      .title-wrapper {
+        h3 {
+          font-size: 2.2rem;
+          font-weight: 700;
+          margin: 0 0 10px 0;
+          line-height: 1.2;
+          color: white;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+          transform: translateY(30px);
+          opacity: 0;
+          transition: all 0.5s ease 0.1s;
+        }
+        
+        .blog-description {
+          font-size: 1rem;
+          font-weight: 400;
+          margin: 0 0 15px 0;
+          line-height: 1.4;
+          color: rgba(255, 255, 255, 0.9);
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+          transform: translateY(25px);
+          opacity: 0;
+          transition: all 0.5s ease 0.15s;
+        }
+        
+        .card-details {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          opacity: 0;
+          transform: translateY(20px);
+          transition: all 0.5s ease 0.2s;
+          
+          .read-more {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+          }
+          
+          .arrow-icon {
+            transition: transform 0.3s ease;
+          }
+        }
+        
+        &:hover {
+          .arrow-icon {
+            transform: translateX(5px);
+          }
+        }
+      }
+    }
+  }
+
+  // Specific position styles for stacked effect
+  .card.position-0 {
+    box-shadow: 
+      0 25px 40px rgba(0, 0, 0, 0.5),
+      0 15px 20px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+  
+  .card.position-1 {
+    box-shadow: 
+      0 20px 30px rgba(0, 0, 0, 0.4),
+      0 10px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card.position-2 {
+    box-shadow: 
+      0 15px 25px rgba(0, 0, 0, 0.3),
+      0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Media queries for better responsiveness
+@media (max-width: 768px) {
+  .professional-card-slider-container {
+    min-height: 450px;
+    
+    .slider-scene {
+      width: 350px;
+      height: 350px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .professional-card-slider-container {
+    min-height: 400px;
+    
+    .slider-scene {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .card .card-content .title-wrapper h3 {
+      font-size: 1.5rem;
+    }
+  }
+}

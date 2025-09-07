@@ -1,0 +1,82 @@
+@use "../../styles/variables.scss" as vars;
+
+.card-slider-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: vars.$color-bg;
+  perspective: 1000px;
+  overflow: hidden;
+  
+  .slider {
+    width: 300px;
+    height: 400px;
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform: rotateX(45deg);
+  }
+  
+  .card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transform: translateZ(0);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-color: vars.$color-primary;
+    transition: all 0.5s cubic-bezier(0.83, 0, 0.17, 1);
+    
+    &:hover {
+      transform: translateZ(10px) scale(1.05);
+    }
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .copy {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      color: vars.$color-text-light;
+      text-decoration: none;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      
+      h1 {
+        font-size: 1.5rem;
+        margin: 0;
+        overflow: hidden;
+        display: block;
+        white-space: nowrap;
+        
+        span {
+          display: inline-block;
+          overflow: hidden;
+        }
+      }
+    }
+    
+    // Platzhalter für Bilder
+    [class^="placeholder-"] {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      color: vars.$color-text-light;
+    }
+    
+    .placeholder-bitaxe-overview { background-color: #5D8AA8; }
+    .placeholder-solo-mining-guide { background-color: #E32636; }
+    .placeholder-bitaxe-setup { background-color: #9966CC; }
+  }
+}

@@ -1,0 +1,56 @@
+/* 
+  Platzhalter für Bilder erstellen mit CSS statt Bilddateien
+  Diese CSS-Datei erzeugt Platzhalter-Rechtecke mit den entsprechenden Texten
+*/
+
+.placeholder-bitaxe-gamma {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 1rem;
+}
+
+.placeholder-solo-mining {
+  background: linear-gradient(135deg, #43cea2, #185a9d);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 1rem;
+}
+
+.placeholder-bitaxe-setup {
+  background: linear-gradient(135deg, #3494e6, #ec6ead);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 1rem;
+}
+
+.placeholder-general {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 1rem;
+}
