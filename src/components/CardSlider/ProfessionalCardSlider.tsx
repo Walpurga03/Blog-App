@@ -1,75 +1,102 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import './ProfessionalCardSlider.scss';
 
 // Bilder importieren
-import BitaxeSchwarz from '../../assets/Bitaxe-schwarz.webp';
-import BitaxeRot from '../../assets/Bitaxe-rot.webp';
-import BitaxeLila from '../../assets/Bitaxe-lila.webp';
+import Image1 from '../../assets/images/blog/1-image.jpg';
+import Image2 from '../../assets/images/blog/2-image.jpg';
+import Image3 from '../../assets/images/blog/3-image.webp';
+import Image4 from '../../assets/images/blog/4-image.webp';
+import Image5 from '../../assets/images/blog/5-image.webp';
 
-interface CardSliderProps {
-  cards: {
-    id: string;
-    title: string;
-    description: string;
-    imageUrl: string;
-    link?: string;
-  }[];
+// Define a unified card type that includes all possible image properties
+interface BlogCardItem {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl?: string;
+  image?: string;
+  link?: string;
 }
 
-function ProfessionalCardSlider({ cards }: CardSliderProps) {
+interface CardSliderProps {
+  cards?: BlogCardItem[];
+  minimal?: boolean;
+}
+
+function ProfessionalCardSlider({ cards = [] }: CardSliderProps) {
+  const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
   
-  // Bestimme das Bild basierend auf der ID
-  const getImageForCard = (id: string) => {
-    switch(id) {
-      case 'bitaxe-overview':
-        return BitaxeSchwarz;
-      case 'solo-mining-guide':
-        return BitaxeRot;
-      case 'bitaxe-setup':
-        return BitaxeLila;
-      default:
-        return BitaxeSchwarz;
+  // Fallback für den Fall, dass keine Karten vorhanden sind
+  const defaultCards = [
+    {
+      id: 'bitaxe-overview',
+      title: 'Bitaxe: Eine Einführung zum kompakten Bitcoin-Miner',
+      description: 'Entdecke den Bitaxe - ein kompakter, energieeffizienter Bitcoin-Miner für dezentrales Mining zu Hause.',
+      imageUrl: Image1,
+      link: '/blog/bitaxe-overview'
+    },
+    {
+      id: 'solo-mining-guide',
+      title: 'Der ultimative Guide zum Solo-Mining mit Bitaxe',
+      description: 'Schritt-für-Schritt Anleitung zum erfolgreichen Solo-Mining mit deinem Bitaxe-Gerät.',
+      imageUrl: Image2,
+      link: '/blog/solo-mining-guide'
+    },
+    {
+      id: 'bitaxe-setup',
+      title: 'Bitaxe optimal einrichten: Maximiere deine Mining-Effizienz',
+      description: 'Tipps und Tricks zur optimalen Konfiguration deines Bitaxe-Miners für maximale Leistung.',
+      imageUrl: Image3,
+      link: '/blog/bitaxe-setup'
     }
-  };
+  ];
   
-  // Bestimme den Blog-Titel basierend auf der ID
-  const getBlogTitle = (id: string) => {
-    switch(id) {
-      case 'bitaxe-overview':
-        return "Blog Schwarz";
-      case 'solo-mining-guide':
-        return "Blog Rot";
-      case 'bitaxe-setup':
-        return "Blog Lila";
-      default:
-        return "Blog";
+  // Verwende die übergebenen Karten oder die Standard-Karten
+  const displayCards = cards.length > 0 ? cards : defaultCards;
+  
+  // Bestimme das Bild basierend auf der übergebenen URL oder ID
+  const getImageForCard = (card: any) => {
+    if (card.imageUrl) {
+      return card.imageUrl;
     }
-  };
-  
-  // Bestimme den Blog-Text basierend auf der ID
-  const getBlogText = (id: string) => {
-    switch(id) {
+    if (card.image) {
+      return card.image;
+    }
+    
+    // Fallback-Logik basierend auf der ID
+    switch(card.id) {
       case 'bitaxe-overview':
-        return "Der schwarze Bitaxe Miner für professionelles Mining";
+        return Image1;
       case 'solo-mining-guide':
-        return "Der rote Bitaxe für optimale Leistung beim Mining";
+        return Image2;
       case 'bitaxe-setup':
-        return "Der lila Bitaxe mit verbesserter Kühlung";
+        return Image3;
+      case 'Bitaxe-was-ist-das':
+      case 'bitaxe_home':
+        return Image4;
+      case 'Bitaxe-what-it-is':
+      case 'bitaxe_what_it_is':
+        return Image5;
       default:
-        return "Bitaxe Mining Blog";
+        return Image1;
     }
   };
 
   // Rotiere Karten, wenn geklickt wird
-  const handleCardRotation = () => {
-    if (isAnimating) return;
+  const handleCardRotation = (e?: React.MouseEvent<HTMLDivElement>) => {
+    // Don't rotate cards if clicking directly on a link
+    if (isAnimating || (e && (e.target as HTMLElement).closest('a'))) return;
     
     setIsAnimating(true);
-    setActiveIndex((prev) => (prev + 1) % cards.length);
+    setActiveIndex((prev) => (prev + 1) % displayCards.length);
+    
+    // Titel animieren
+    animateMainTitle();
     
     setTimeout(() => {
       setIsAnimating(false);
@@ -77,6 +104,18 @@ function ProfessionalCardSlider({ cards }: CardSliderProps) {
   };
 
   // Tastaturnavigation
+  // Funktion für die Titel-Animation
+  const animateMainTitle = () => {
+    const titleElement = document.querySelector('.slider-main-title');
+    if (titleElement) {
+      titleElement.classList.add('title-change');
+      
+      setTimeout(() => {
+        titleElement.classList.remove('title-change');
+      }, 400);
+    }
+  };
+  
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
@@ -84,7 +123,8 @@ function ProfessionalCardSlider({ cards }: CardSliderProps) {
       } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
         if (isAnimating) return;
         setIsAnimating(true);
-        setActiveIndex((prev) => (prev - 1 + cards.length) % cards.length);
+        setActiveIndex((prev) => (prev - 1 + displayCards.length) % displayCards.length);
+        animateMainTitle();
         setTimeout(() => {
           setIsAnimating(false);
         }, 600);
@@ -95,7 +135,19 @@ function ProfessionalCardSlider({ cards }: CardSliderProps) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isAnimating, cards.length]);
+  }, [isAnimating, displayCards.length]);
+
+  // Effekt für die Haupttitel-Animation beim Start
+  useEffect(() => {
+    // Animation beim Laden des Haupttitels
+    const mainTitle = document.querySelector('.slider-main-title');
+    if (mainTitle) {
+      mainTitle.classList.add('title-change');
+      setTimeout(() => {
+        mainTitle.classList.remove('title-change');
+      }, 400);
+    }
+  }, [displayCards]);
 
   // Automatische Rotation alle 5 Sekunden
   useEffect(() => {
@@ -110,6 +162,24 @@ function ProfessionalCardSlider({ cards }: CardSliderProps) {
 
   return (
     <div className="professional-card-slider-container">
+      {/* Stilvoller Titel-Bereich über dem Slider */}
+      <div className="slider-title-section">
+        <div className="title-decoration">
+          <span className="line"></span>
+          <span className="dot"></span>
+          <span className="line"></span>
+        </div>
+        <h2 className="section-heading">Neueste Beiträge</h2>
+        <p className="section-subheading">
+          Erfahre mehr über die neuesten Entwicklungen und Tipps rund um Bitcoin-Mining
+        </p>
+        <div className="slider-title-container">
+          <h3 className="slider-main-title">
+            {displayCards[activeIndex]?.title || "Blog-Artikel"}
+          </h3>
+        </div>
+      </div>
+      
       <div className="slider-controls">
         <button 
           className="control-btn prev"
@@ -118,6 +188,7 @@ function ProfessionalCardSlider({ cards }: CardSliderProps) {
             if (isAnimating) return;
             setIsAnimating(true);
             setActiveIndex((prev) => (prev - 1 + cards.length) % cards.length);
+            animateMainTitle();
             setTimeout(() => {
               setIsAnimating(false);
             }, 600);
@@ -130,7 +201,7 @@ function ProfessionalCardSlider({ cards }: CardSliderProps) {
         </button>
         
         <div className="pagination">
-          {cards.map((_, index) => (
+          {displayCards.map((_, index) => (
             <button
               key={index}
               className={`pagination-dot ${index === activeIndex ? 'active' : ''}`}
@@ -139,6 +210,7 @@ function ProfessionalCardSlider({ cards }: CardSliderProps) {
                 if (isAnimating) return;
                 setIsAnimating(true);
                 setActiveIndex(index);
+                animateMainTitle();
                 setTimeout(() => {
                   setIsAnimating(false);
                 }, 600);
@@ -165,14 +237,14 @@ function ProfessionalCardSlider({ cards }: CardSliderProps) {
       <div className="slider-scene" ref={sliderRef}>
         <div 
           className={`slider ${isAnimating ? 'is-animating' : ''}`}
-          onClick={handleCardRotation}
+          onClick={(e) => handleCardRotation(e)}
         >
-          {cards.map((card, index) => {
+          {displayCards.map((card, index) => {
             // Berechne die relative Position jeder Karte
-            const position = (index - activeIndex + cards.length) % cards.length;
+            const position = (index - activeIndex + displayCards.length) % displayCards.length;
             
             // Bestimme die Z-Tiefe - active card ist am weitesten vorne
-            const zIndex = cards.length - position;
+            const zIndex = displayCards.length - position;
             
             // Berechne die Position und Rotation für den 3D Effekt
             const translateY = position * 10;
@@ -192,26 +264,25 @@ function ProfessionalCardSlider({ cards }: CardSliderProps) {
                 }}
               >
                 <div className="card-inner">
-                  <div className="card-face front">
+                  <Link to={card.link || `/blog/${card.id}`} className="card-face front">
                     <img 
-                      src={getImageForCard(card.id)} 
+                      src={getImageForCard(card)} 
                       alt={card.title} 
                       className="card-image"
                     />
                     <div className="card-overlay"></div>
-                    <Link to={`/blog/${card.id}`} className="card-content">
+                    <div className="card-content">
                       <div className="title-wrapper">
-                        <h3>{getBlogTitle(card.id)}</h3>
-                        <p className="blog-description">{getBlogText(card.id)}</p>
+                        <p className="blog-description">{card.description}</p>
                         <div className="card-details">
-                          <span className="read-more">Mehr lesen</span>
+                          <span className="read-more">{t ? t('home.read_more') : 'Mehr lesen'}</span>
                           <svg className="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
                             <path fill="currentColor" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"></path>
                           </svg>
                         </div>
                       </div>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 </div>
               </div>
             );

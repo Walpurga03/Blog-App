@@ -1,17 +1,130 @@
 @use "../../styles/themes.scss" as vars;
 
+/* 
+ * ProfessionalCardSlider - Ein moderner, 3D-animierter Card-Slider für Blog Posts
+ * 
+ * Features:
+ * - 3D-Karten mit Tiefeneffekt und realistischer Perspektive
+ * - Elegante Übergangsanimationen zwischen den Karten
+ * - Vollständig responsiv mit optimierten Mobil-Ansichten
+ * - Unterstützt Tastaturnavigation für Barrierefreiheit
+ * - Automatische Kartenrotation mit Pausierung bei Hover
+ */
+
 .professional-card-slider-container {
   position: relative;
-  height: 65vh;
-  min-height: 550px;
+  height: 80vh;
+  min-height: 650px;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  perspective: 1500px;
+  perspective: 1800px; /* Tiefere Perspektive für dramatischeren 3D-Effekt */
   overflow: visible;
-  padding: 50px 0;
+  padding: 80px 0;
+  user-select: none; /* Verhindert unbeabsichtigte Textauswahl während des Scrollens/Klickens */
+  
+  // Moderner Titel-Bereich mit Dekoration
+  .slider-title-section {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    // Dekorative Elemente
+    .title-decoration {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      
+      .line {
+        width: 40px;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(255, 165, 0, 0.5), rgba(255, 165, 0, 1));
+        margin: 0 8px;
+      }
+      
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #ff9900;
+        box-shadow: 0 0 8px rgba(255, 153, 0, 0.6);
+      }
+    }
+    
+    // Hauptüberschrift des Abschnitts
+    .section-heading {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #333333;
+      margin: 0 0 15px;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      
+      [data-theme="dark"] & {
+        color: #ffffff;
+      }
+    }
+    
+    // Unterüberschrift mit Erklärung
+    .section-subheading {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #666666;
+      margin: 0 0 30px;
+      max-width: 600px;
+      text-align: center;
+      line-height: 1.5;
+      
+      [data-theme="dark"] & {
+        color: #bbbbbb;
+      }
+    }
+  
+    // Container für den aktuell ausgewählten Artikel-Titel
+    .slider-title-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin-bottom: 20px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 12px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+    
+      .slider-main-title {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin: 0;
+        transition: all 0.4s ease;
+        letter-spacing: -0.02em;
+        
+        // Animation beim Titelwechsel
+        &.title-change {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+      }
+    }
+    
+    [data-theme="dark"] & {
+      background-color: rgba(40, 40, 40, 0.85);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+  }
   
   // Controls for the slider (prev/next and dots)
   .slider-controls {
@@ -173,6 +286,10 @@
       border-radius: 8px; // Konsistenter Radius mit card-inner
       overflow: hidden;
       background-color: #1a1a1a; // Fallback background color
+      display: block; // Needed for link to fill the space
+      color: inherit; // Inherit text color
+      text-decoration: none; // Remove underline from link
+      cursor: pointer; // Show pointer cursor on hover
       
       // Ensure cards maintain shape even during transitions
       &::after {
@@ -208,13 +325,16 @@
       height: 100%;
       background: linear-gradient(
         0deg,
-        rgba(0, 0, 0, 0.95) 0%,
-        rgba(0, 0, 0, 0.8) 20%,
-        rgba(0, 0, 0, 0.6) 40%,
-        rgba(0, 0, 0, 0.2) 70%,
-        rgba(0, 0, 0, 0) 100%
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.6) 30%,
+        rgba(0, 0, 0, 0.4) 60%,
+        rgba(0, 0, 0, 0.2) 80%,
+        rgba(0, 0, 0, 0.1) 100%
       );
+      opacity: 0.75;
     }
+    
+    // Wir haben den Titel im Bild entfernt, daher brauchen wir diese Stile nicht mehr
     
     // Content container
     .card-content {
@@ -224,7 +344,6 @@
       width: 100%;
       padding: 25px 20px;
       color: white;
-      text-decoration: none;
       z-index: 2;
       transition: all 0.4s ease;
       opacity: 0;
@@ -232,18 +351,6 @@
       
       // Title container
       .title-wrapper {
-        h3 {
-          font-size: 2.2rem;
-          font-weight: 700;
-          margin: 0 0 10px 0;
-          line-height: 1.2;
-          color: white;
-          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-          transform: translateY(30px);
-          opacity: 0;
-          transition: all 0.5s ease 0.1s;
-        }
-        
         .blog-description {
           font-size: 1rem;
           font-weight: 400;
@@ -308,7 +415,30 @@
 // Media queries for better responsiveness
 @media (max-width: 768px) {
   .professional-card-slider-container {
-    min-height: 450px;
+    min-height: 550px;
+    padding: 60px 0;
+    
+    .slider-title-section {
+      margin-bottom: 30px;
+      
+      .section-heading {
+        font-size: 2.4rem;
+      }
+      
+      .section-subheading {
+        font-size: 1rem;
+        max-width: 90%;
+        margin-bottom: 25px;
+      }
+      
+      .slider-title-container {
+        max-width: 600px;
+        
+        .slider-main-title {
+          font-size: 1.6rem;
+        }
+      }
+    }
     
     .slider-scene {
       width: 350px;
@@ -319,15 +449,46 @@
 
 @media (max-width: 480px) {
   .professional-card-slider-container {
-    min-height: 400px;
+    min-height: 520px;
+    padding: 40px 0;
+    
+    .slider-title-section {
+      margin-bottom: 20px;
+      
+      .title-decoration {
+        .line {
+          width: 25px;
+        }
+      }
+      
+      .section-heading {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+      }
+      
+      .section-subheading {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 20px;
+      }
+      
+      .slider-title-container {
+        max-width: 90%;
+        padding: 10px 15px;
+        
+        .slider-main-title {
+          font-size: 1.3rem;
+        }
+      }
+    }
     
     .slider-scene {
       width: 300px;
       height: 300px;
     }
     
-    .card .card-content .title-wrapper h3 {
-      font-size: 1.5rem;
+    .card .card-content .title-wrapper .blog-description {
+      font-size: 0.9rem;
     }
   }
 }

@@ -16,12 +16,21 @@
     "decentralized_desc": "Stärke das Bitcoin-Netzwerk durch dezentrales Mining",
     "open_source": "Open Source",
     "open_source_desc": "Vollständig anpassbar und von der Community unterstützt",
+    "cost_effective": "Kostengünstig",
+    "cost_effective_desc": "Geringere Anfangsinvestition mit schnellerem ROI als industrielle Miner",
     "latest_developments": "Erfahre mehr über die neuesten Entwicklungen und Tipps",
     "stay_updated": "Bleib auf dem Laufenden",
     "newsletter_desc": "Melde dich für unseren Newsletter an und erhalte die neuesten Updates, Tipps und Tricks rund um das Mining mit Bitaxe.",
     "email_placeholder": "Deine E-Mail-Adresse",
     "subscribe": "Anmelden",
-    "read_more": "Weiterlesen"
+    "read_more": "Weiterlesen",
+    "scroll_down": "Nach unten scrollen"
+  },
+  "accessibility": {
+    "image_slider": "Bildergalerie Bitaxe Miner",
+    "previous_image": "Vorheriges Bild anzeigen",
+    "next_image": "Nächstes Bild anzeigen", 
+    "show_image": "Bild anzeigen"
   },
   "footer": {
     "tagline": "Dezentralisiertes Mining für alle",
@@ -45,36 +54,25 @@
   "shop": {
     "now": "Jetzt kaufen"
   },
-  "blog": {
-    "not_found": "Blog nicht gefunden",
-    "not_found_message": "Der gesuchte Blog-Beitrag existiert nicht oder wurde entfernt."
+  "newsletter": {
+    "privacy_notice": "Wir respektieren deine Privatsphäre. Deine E-Mail wird nur für Bitaxe-Updates verwendet.",
+    "success_message": "Vielen Dank für deine Anmeldung!",
+    "error_message": "Ups! Etwas ist schief gelaufen. Bitte versuche es erneut."
   },
   "blog_cards": {
-    "bitaxe_overview": {
-      "title": "Bitaxe: Was ist das und wie funktioniert es?",
-      "description": "Ein umfassender Überblick über den Bitaxe Bitcoin-Miner, seine Funktionsweise und Vorteile für das Solo-Mining."
-    },
-    "solo_mining_guide": {
-      "title": "Solo-Mining Guide für Anfänger",
-      "description": "Alles was du wissen musst, um mit deinem Bitaxe erfolgreich Solo-Mining zu betreiben."
-    },
-    "bitaxe_setup": {
-      "title": "Bitaxe einrichten: Schritt für Schritt",
-      "description": "Eine detaillierte Anleitung zur Einrichtung und Optimierung deines Bitaxe-Miners."
-    },
     "bitaxe_home": {
       "title": "Bitaxe im Heimgebrauch",
       "description": "Tipps und Tricks für die optimale Einrichtung und den Betrieb deines Bitaxe-Miners zu Hause."
+    },
+    "bitaxe_what_it_is": {
+      "title": "Was ist Bitaxe?",
+      "description": "Ein umfassender Überblick über den Bitaxe Bitcoin-Miner, seine Funktionsweise und Vorteile für das Solo-Mining."
     }
   },
-  "blog_posts": {
-    "solo_mining_guide": {
-      "title": "Der ultimative Guide zum Solo-Mining mit Bitaxe",
-      "content": "Solo-Mining mit dem Bitaxe ist ein aufregendes Abenteuer in die Welt des Bitcoin-Minings. In diesem ausführlichen Guide lernst du Schritt für Schritt, wie du deinen Bitaxe optimal für Solo-Mining einrichten kannst.\n\nErste Schritte:\nZuerst solltest du deinen Bitaxe mit einem stabilen Stromnetzteil verbinden und sicherstellen, dass er ordnungsgemäß mit deinem WLAN verbunden ist. Folge den Anweisungen im AxeOS-Dashboard, um deine Mining-Pool-Einstellungen zu konfigurieren.\n\nPool-Auswahl:\nFür Solo-Mining empfehlen wir den CK Pool oder den Public Pool. Beide Optionen bieten hervorragende Möglichkeiten für Solo-Miner, mit der Chance, einen vollständigen Block zu finden."
-    },
-    "bitaxe_setup": {
-      "title": "Bitaxe einrichten: Eine Schritt-für-Schritt-Anleitung",
-      "content": "In dieser Anleitung zeigen wir dir, wie du deinen Bitaxe-Miner schnell und einfach einrichten kannst, um sofort mit dem Bitcoin-Mining zu beginnen.\n\nLieferumfang:\n- Bitaxe Mining-Gerät\n- USB-C Stromkabel\n- Kurzanleitung\n\nEinrichtungsschritte:\n1. Verbinde den Bitaxe mit einem geeigneten USB-C Netzteil (mindestens 18W empfohlen)\n2. Warte bis die LED zu blinken beginnt\n3. Verbinde dich mit dem WLAN-Hotspot des Bitaxe (Name: Bitaxe-XXXX)\n4. Navigiere in deinem Browser zu 192.168.4.1\n5. Konfiguriere dein Heimnetzwerk und deine Mining-Pool-Einstellungen"
-    }
+  "blog": {
+    "loading": "Lade Blog-Beitrag...",
+    "not_found": "Blog-Beitrag nicht gefunden",
+    "not_found_message": "Entschuldigung, der gesuchte Beitrag konnte nicht gefunden werden.",
+    "read_more": "Mehr lesen"
   }
 }
