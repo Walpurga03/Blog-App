@@ -1,0 +1,60 @@
+@use '../../../styles/themes.scss' as vars;
+
+.featured-blog-section {
+  padding: 4rem 0;
+  background: vars.$color-bg-card;
+  
+  [data-theme="dark"] & {
+    background: vars.$color-bg-dark;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      
+      .gradient-text {
+        background: linear-gradient(90deg, vars.$color-primary, vars.$color-secondary);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        display: inline-block;
+      }
+    }
+    
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: vars.$color-text-muted;
+      max-width: 600px;
+      margin: 0 auto;
+      
+      [data-theme="dark"] & {
+        color: vars.$color-text-muted;
+      }
+    }
+  }
+  
+  .featured-blog-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    
+    @media (max-width: 768px) {
+      padding: 0;
+    }
+  }
+  
+  .loading-container {
+    text-align: center;
+    padding: 3rem 0;
+    font-size: 1.2rem;
+    color: vars.$color-text-muted;
+    
+    [data-theme="dark"] & {
+      color: vars.$color-text-muted;
+    }
+  }
+}

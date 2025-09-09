@@ -1,0 +1,262 @@
+@use '../../../styles/themes.scss' as vars;
+
+// Moderne Variablen
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 4rem;
+$spacing-xl: 8rem;
+$border-radius-md: 16px;
+$content-padding: clamp(1rem, 5vw, 2.5rem);
+
+@mixin section-padding {
+  padding: $spacing-lg $content-padding;
+  
+  // Anpassung für größere Bildschirme
+  @media (min-width: 1600px) {
+    padding: $spacing-lg calc($content-padding + 2rem);
+  }
+  
+  @media (min-width: 2000px) {
+    padding: $spacing-lg calc($content-padding + 4rem);
+  }
+  
+  @media (min-width: 2400px) {
+    padding: $spacing-lg calc($content-padding + 6rem);
+    max-width: 2000px;
+    margin: 0 auto;
+  }
+  
+  // Anpassung für mobile Geräte
+  @media (max-width: 768px) {
+    padding: $spacing-md $content-padding;
+  }
+}
+
+// Features Section
+.features-section {
+  @include section-padding;
+  position: relative;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+  
+  // Background decoration elements
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    z-index: 0;
+    opacity: 0.05;
+  }
+  
+  &::before {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, vars.$color-primary, transparent 70%);
+    top: -200px;
+    right: -200px;
+  }
+  
+  &::after {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, vars.$color-accent, transparent 70%);
+    bottom: -150px;
+    left: -150px;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+    position: relative;
+    z-index: 1;
+    
+    .section-title {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      margin-bottom: $spacing-md;
+      color: vars.$color-header;
+      position: relative;
+      display: inline-block;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(135deg, vars.$color-primary, vars.$color-accent);
+        border-radius: 2px;
+      }
+    }
+    
+    .section-subtitle {
+      font-size: 1.15rem;
+      color: vars.$color-text-muted;
+      max-width: 650px;
+      margin: $spacing-md auto 0;
+      line-height: 1.6;
+    }
+  }
+  
+  .features-container {
+    display: flex;
+    gap: $spacing-md;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    .feature-card {
+      background: white;
+      border-radius: $border-radius-md;
+      padding: calc($spacing-md * 1.5);
+      flex: 1;
+      min-width: 250px;
+      max-width: 280px;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+      // Subtle background pattern
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(to right, transparent, vars.$color-primary, transparent);
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
+      }
+      
+      [data-theme="dark"] & {
+        background: vars.$color-bg-card;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+      }
+      
+      &:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        
+        &::before {
+          transform: translateY(0);
+        }
+        
+        .feature-icon-wrapper {
+          transform: scale(1.1);
+          background: rgba(255, 124, 45, 0.2);
+        }
+        
+        .feature-link .arrow {
+          transform: translateX(4px);
+        }
+        
+        [data-theme="dark"] & {
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+      }
+      
+      .feature-icon-wrapper {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: $spacing-md;
+        background: rgba(255, 124, 45, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          border: 2px solid rgba(255, 124, 45, 0.2);
+          animation: pulse 2s infinite;
+        }
+        
+        .feature-icon {
+          font-size: 2rem;
+        }
+      }
+      
+      h3 {
+        font-size: 1.4rem;
+        margin-bottom: $spacing-sm;
+        color: vars.$color-header;
+        font-weight: 700;
+      }
+      
+      p {
+        color: vars.$color-text-muted;
+        line-height: 1.6;
+        font-size: 1rem;
+        margin-bottom: $spacing-md;
+        flex-grow: 1;
+      }
+      
+      .feature-link {
+        display: inline-flex;
+        align-items: center;
+        color: vars.$color-primary;
+        font-weight: 600;
+        text-decoration: none;
+        gap: 6px;
+        transition: all 0.3s ease;
+        
+        .arrow {
+          transition: transform 0.3s ease;
+        }
+        
+        &:hover {
+          color: vars.$color-accent;
+        }
+      }
+    }
+  }
+  
+  // Mobile responsive styles for the features section
+  @media (max-width: 768px) {
+    .features-container {
+      .feature-card {
+        min-width: 100%;
+      }
+    }
+  }
+}
+
+// Gradient text styling
+.gradient-text {
+  background: linear-gradient(135deg, vars.$color-primary, vars.$color-accent);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}

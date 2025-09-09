@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './ProfessionalCardSlider.scss';
 
-// Bilder importieren
-import Image1 from '../../assets/images/blog/1-image.jpg';
-import Image2 from '../../assets/images/blog/2-image.jpg';
-import Image3 from '../../assets/images/blog/3-image.webp';
-import Image4 from '../../assets/images/blog/4-image.webp';
-import Image5 from '../../assets/images/blog/5-image.webp';
+// Bilder direkt importieren
+import Image1 from '../../assets/images/blog/1-blog.jpg';
+import Image2 from '../../assets/images/blog/2-blog.jpg';
+
+// Bildmap mit numerischer ID
+const imageMap: Record<string, string> = {
+  '1-blog': Image1,
+  '2-blog': Image2,
+};
 
 // Define a unified card type that includes all possible image properties
 interface BlogCardItem {
@@ -22,7 +25,6 @@ interface BlogCardItem {
 
 interface CardSliderProps {
   cards?: BlogCardItem[];
-  minimal?: boolean;
 }
 
 function ProfessionalCardSlider({ cards = [] }: CardSliderProps) {
@@ -34,57 +36,32 @@ function ProfessionalCardSlider({ cards = [] }: CardSliderProps) {
   // Fallback für den Fall, dass keine Karten vorhanden sind
   const defaultCards = [
     {
-      id: 'bitaxe-overview',
-      title: 'Bitaxe: Eine Einführung zum kompakten Bitcoin-Miner',
-      description: 'Entdecke den Bitaxe - ein kompakter, energieeffizienter Bitcoin-Miner für dezentrales Mining zu Hause.',
-      imageUrl: Image1,
-      link: '/blog/bitaxe-overview'
+      id: '1-blog',
+      title: 'Bitaxe für den Heimgebrauch',
+      description: 'Tipps und Tricks für die optimale Einrichtung und den Betrieb Ihres Bitaxe-Miners zu Hause.',
+      link: '/blog/1-blog'
     },
     {
-      id: 'solo-mining-guide',
-      title: 'Der ultimative Guide zum Solo-Mining mit Bitaxe',
-      description: 'Schritt-für-Schritt Anleitung zum erfolgreichen Solo-Mining mit deinem Bitaxe-Gerät.',
-      imageUrl: Image2,
-      link: '/blog/solo-mining-guide'
+      id: '2-blog',
+      title: 'Was ist Bitaxe?',
+      description: 'Ein umfassender Überblick über den Bitaxe Bitcoin-Miner, wie er funktioniert und seine Vorteile für Solo-Mining.',
+      link: '/blog/2-blog'
     },
-    {
-      id: 'bitaxe-setup',
-      title: 'Bitaxe optimal einrichten: Maximiere deine Mining-Effizienz',
-      description: 'Tipps und Tricks zur optimalen Konfiguration deines Bitaxe-Miners für maximale Leistung.',
-      imageUrl: Image3,
-      link: '/blog/bitaxe-setup'
-    }
   ];
   
   // Verwende die übergebenen Karten oder die Standard-Karten
   const displayCards = cards.length > 0 ? cards : defaultCards;
   
-  // Bestimme das Bild basierend auf der übergebenen URL oder ID
-  const getImageForCard = (card: any) => {
-    if (card.imageUrl) {
-      return card.imageUrl;
-    }
-    if (card.image) {
-      return card.image;
-    }
+  // Vereinfachte Funktion zur Bildbestimmung
+  const getImageForCard = (card: BlogCardItem): string => {
+    // 1. Wenn die Karte bereits eine imageUrl hat
+    if (card.imageUrl) return card.imageUrl;
     
-    // Fallback-Logik basierend auf der ID
-    switch(card.id) {
-      case 'bitaxe-overview':
-        return Image1;
-      case 'solo-mining-guide':
-        return Image2;
-      case 'bitaxe-setup':
-        return Image3;
-      case 'Bitaxe-was-ist-das':
-      case 'bitaxe_home':
-        return Image4;
-      case 'Bitaxe-what-it-is':
-      case 'bitaxe_what_it_is':
-        return Image5;
-      default:
-        return Image1;
-    }
+    // 2. Direkt in der Image-Map nachschauen
+    if (card.id && imageMap[card.id]) return imageMap[card.id];
+    
+    // 3. Fallback auf Default-Bild
+    return Image1;
   };
 
   // Rotiere Karten, wenn geklickt wird
@@ -169,10 +146,6 @@ function ProfessionalCardSlider({ cards = [] }: CardSliderProps) {
           <span className="dot"></span>
           <span className="line"></span>
         </div>
-        <h2 className="section-heading">Neueste Beiträge</h2>
-        <p className="section-subheading">
-          Erfahre mehr über die neuesten Entwicklungen und Tipps rund um Bitcoin-Mining
-        </p>
         <div className="slider-title-container">
           <h3 className="slider-main-title">
             {displayCards[activeIndex]?.title || "Blog-Artikel"}
@@ -253,6 +226,10 @@ function ProfessionalCardSlider({ cards = [] }: CardSliderProps) {
             const scale = position === 0 ? 1 : Math.max(0.85 - position * 0.05, 0.7);
             const opacity = position === 0 ? 1 : Math.max(0.9 - position * 0.2, 0.3);
             
+            // Hier das Bild mit console.log
+            const imageSource = getImageForCard(card);
+            console.log('Card:', card.id, 'Image source:', imageSource);
+            
             return (
               <div 
                 key={card.id}
@@ -266,7 +243,7 @@ function ProfessionalCardSlider({ cards = [] }: CardSliderProps) {
                 <div className="card-inner">
                   <Link to={card.link || `/blog/${card.id}`} className="card-face front">
                     <img 
-                      src={getImageForCard(card)} 
+                      src={imageSource} 
                       alt={card.title} 
                       className="card-image"
                     />

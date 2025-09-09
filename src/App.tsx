@@ -1,10 +1,15 @@
-import './App.scss';
-import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+// React und externe Bibliotheken
 import { useEffect } from 'react';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
+// Komponenten
 import ModernLayout from './components/Layout/ModernLayout';
 import ModernHome from './components/Home/ModernHome';
 import Blog from './components/Blog/Blog';
-import { useTranslation } from 'react-i18next';
+
+// Stile und Konfigurationen
+import './App.scss';
 import './i18n';
 
 function App() {

@@ -1,59 +1,39 @@
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 
-// Define the blog card type
-export interface BlogCard {
+interface BlogCard {
   id: string;
   title: string;
   description: string;
-  image: string;
-  slug: string;
+  link?: string;
 }
 
-export const useBlogCards = () => {
+export function useBlogCards(limit?: number) {
   const { t, i18n } = useTranslation();
-  const [blogCards, setBlogCards] = useState<BlogCard[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  // Initialisiere mit leerem Array statt undefined
+  const [cards, setCards] = useState<BlogCard[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadBlogCards = async () => {
-      setLoading(true);
-      try {
-        // Define available blog cards
-        const availableBlogs = [
-          {
-            id: 'bitaxe_what_it_is',
-            image: '/src/assets/images/blog/bitaxe-what-it-is.webp',
-            slug: 'bitaxe-what-it-is'
-          },
-          {
-            id: 'bitaxe_home',
-            image: '/src/assets/images/blog/bitaxe-home.webp',
-            slug: 'bitaxe-home'
-          }
-        ];
+    // Blog-IDs mit dem neuen Benennungssystem
+    const blogIds = ['1-blog', '2-blog'];
+    
+    // Karten erstellen
+    const blogCards = blogIds.map(id => {
+      return {
+        id: id,
+        title: t(`blog.${id}.card.title`, { defaultValue: id }),
+        description: t(`blog.${id}.card.description`, { defaultValue: '' }),
+        link: `/blog/${id}`
+      };
+    });
+    
+    // Ergebnis setzen, ggf. mit Limit
+    setCards(limit ? blogCards.slice(0, limit) : blogCards);
+    setLoading(false);
+  }, [t, i18n.language, limit]);
 
-        // Map available blogs with translated content
-        const cards = availableBlogs.map(blog => ({
-          id: blog.id,
-          title: t(`blog_cards.${blog.id}.title`),
-          description: t(`blog_cards.${blog.id}.description`),
-          image: blog.image,
-          slug: blog.slug
-        }));
-
-        setBlogCards(cards);
-      } catch (error) {
-        console.error('Error loading blog cards:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadBlogCards();
-  }, [t, i18n.language]); // Re-run when language changes
-
-  return { blogCards, loading };
-};
+  return { cards, loading };
+}
 
 export default useBlogCards;
