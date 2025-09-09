@@ -165,28 +165,14 @@ export function useBlogPost(blogId: string): UseBlogPostResult {
           // Prüfen, ob die aktuelle Sprache verfügbar ist, sonst auf Englisch zurückfallen
           const language = blogPosts[blogId][currentLanguage] ? currentLanguage : 'en';
           setBlogPost(blogPosts[blogId][language]);
+          setLoading(false);
         } else {
-          // Fallback zu JSON-Dateien, wenn kein hart kodierter Inhalt vorhanden ist
-          try {
-            const blogPostModule = await import(`../locales/blog-posts/${blogId}.${currentLanguage}.json`);
-            
-            setBlogPost({
-              id: blogId,
-              title: blogPostModule.title || '',
-              content: blogPostModule.content || '',
-              date: blogPostModule.date,
-              author: blogPostModule.author,
-              category: blogPostModule.category
-            });
-          } catch (jsonError) {
-            console.error('Fehler beim Laden der JSON-Datei:', jsonError);
-            setError(true);
-          }
+          console.error(`Blog post with ID ${blogId} not found`);
+          setError(true);
+          setLoading(false);
         }
-        
-        setLoading(false);
       } catch (e) {
-        console.error('Fehler beim Laden des Blog-Posts:', e);
+        console.error('Error loading blog post:', e);
         setError(true);
         setLoading(false);
       }

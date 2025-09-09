@@ -5,4 +5,11 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/solomining/',  // Basispfad für GitHub Pages (Repository-Name)
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // Optional: SASS-Optionen hier konfigurieren
+      }
+    }
+  }
 })
