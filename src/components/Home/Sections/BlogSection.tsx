@@ -27,8 +27,6 @@ function FeaturedBlogContent() {
 }
 
 function BlogSection() {
-  const { t } = useTranslation();
-  
   return (
     <section className="blog-section">
       <div className="blog-container">
