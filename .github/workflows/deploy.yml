@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # oder master, je nachdem, wie Ihr Hauptbranch heißt
+      - main
 
 jobs:
   build-and-deploy:
@@ -26,6 +26,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          branch: gh-pages  # Branch, in den die Build-Dateien deployed werden
-          folder: dist  # Ordner mit den Build-Dateien
-          clean: true  # Löscht vorhandene Dateien im gh-pages Branch
+          branch: gh-pages
+          folder: dist
+          clean: true
