@@ -1,0 +1,5 @@
+Hier müsste man aber halt auch echt viel so anpassen, dass es auf die Made in Germany Geräte passt. Hier könnte man auch so eine Art Vergleichstabelle erstellen:
+
+Der Made in Germany Bitaxe vs. die Konkurrenzprodukte.
+
+Alleinstellungsmerkmal unserer Geräte ist ja, dass sie 1,3 TH/s out of the Box haben, während alle anderen Hersteller die Dinger mit nur 1,07 TH/s ausliefern, da die alle so billig fertigen, dass die Geräte die 1,3 TH/s mit Standardkühlung gar nicht packen.

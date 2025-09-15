@@ -1,0 +1,58 @@
+@use "../../styles/variables.scss" as vars;
+
+.modern-home {
+  min-height: 100vh;
+  background: linear-gradient(135deg, vars.$color-primary 0%, vars.$color-secondary 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+
+  .container {
+    text-align: center;
+    color: vars.$color-text;
+    max-width: 800px;
+    padding: 0 1rem;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      line-height: 1.2;
+    }
+
+    p {
+      font-size: 1.25rem;
+      opacity: 0.95;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      margin-top: 2rem;
+
+      .btn {
+        display: inline-block;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &.btn-primary {
+          background: vars.$color-bg;
+          color: vars.$color-primary;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+          &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+          }
+        }
+      }
+    }
+  }
+}
