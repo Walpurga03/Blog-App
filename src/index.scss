@@ -1,94 +1,324 @@
 @use './styles/variables.scss' as vars;
 
-// Reset und Basis-Styling
-* {
+// === MODERN CSS RESET ===
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  // Unser Light Theme (kein Dark Mode)
-  color: vars.$color-text;
+  // Modern font stack
+  font-family: vars.$font-primary;
+  font-size: 16px;
+  line-height: vars.$leading-normal;
+  font-weight: vars.$font-normal;
+  
+  // Color scheme
+  color: vars.$color-text-primary;
   background-color: vars.$color-bg;
-
-  // Text-Rendering Optimierungen
+  
+  // Text rendering optimizations
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  // Kein Flexbox-Centering - normale Dokumentenstruktur
+  position: relative;
+  
+  // Improve text legibility
+  word-wrap: break-word;
+  hyphens: auto;
+  
+  // Prevent horizontal scroll
+  overflow-x: hidden;
 }
 
-// Links mit unserem Design
+// === MODERN SCROLLBAR ===
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: vars.$color-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  background: vars.$color-gray-300;
+  border-radius: vars.$radius-full;
+  
+  &:hover {
+    background: vars.$color-gray-400;
+  }
+}
+
+::-webkit-scrollbar-corner {
+  background: vars.$color-gray-100;
+}
+
+// Firefox scrollbar
+html {
+  scrollbar-width: thin;
+  scrollbar-color: vars.$color-gray-300 vars.$color-gray-100;
+}
+
+// === TYPOGRAPHY IMPROVEMENTS ===
+h1, h2, h3, h4, h5, h6 {
+  font-family: vars.$font-heading;
+  color: vars.$color-text-primary;
+  font-weight: vars.$font-bold;
+  line-height: vars.$leading-tight;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: vars.$text-5xl; }
+h2 { font-size: vars.$text-4xl; }
+h3 { font-size: vars.$text-3xl; }
+h4 { font-size: vars.$text-2xl; }
+h5 { font-size: vars.$text-xl; }
+h6 { font-size: vars.$text-lg; }
+
+p {
+  line-height: vars.$leading-relaxed;
+  margin-bottom: vars.$space-4;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// === IMPROVED LINKS ===
 a {
-  font-weight: 500;
   color: vars.$color-primary;
   text-decoration: none;
-  transition: color 0.25s ease;
+  font-weight: vars.$font-medium;
+  transition: all vars.$transition-fast;
   
   &:hover {
-    color: vars.$color-accent;
+    color: vars.$color-primary-dark;
+  }
+  
+  &:focus-visible {
+    outline: 2px solid vars.$color-primary;
+    outline-offset: 2px;
+    border-radius: vars.$radius-base;
   }
 }
 
-// Buttons mit unserem Design-System
+// === MODERN BUTTONS ===
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: vars.$color-primary;
-  color: vars.$color-text;
+  font-size: vars.$text-base;
+  font-weight: vars.$font-medium;
+  line-height: 1;
+  color: vars.$color-text-light;
+  background: vars.$color-primary;
+  border: none;
+  border-radius: vars.$radius-lg;
+  padding: vars.$space-3 vars.$space-6;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all vars.$transition-base;
   
   &:hover {
-    background-color: vars.$color-accent;
+    background: vars.$color-primary-dark;
     transform: translateY(-1px);
+    box-shadow: vars.$shadow-md;
   }
   
-  &:focus,
+  &:active {
+    transform: translateY(0);
+    box-shadow: vars.$shadow-sm;
+  }
+  
   &:focus-visible {
     outline: 2px solid vars.$color-primary;
     outline-offset: 2px;
   }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
 }
 
-// Typografie
-h1, h2, h3, h4, h5, h6 {
-  color: vars.$color-secondary;
-  font-weight: 600;
-  line-height: 1.2;
+// === FORM ELEMENTS ===
+input, textarea, select {
+  font-family: inherit;
+  font-size: vars.$text-base;
+  line-height: vars.$leading-normal;
+  color: vars.$color-text-primary;
+  background: vars.$color-bg-card;
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$radius-lg;
+  padding: vars.$space-3 vars.$space-4;
+  transition: all vars.$transition-fast;
+  
+  &:focus {
+    outline: none;
+    border-color: vars.$color-primary;
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+  }
+  
+  &::placeholder {
+    color: vars.$color-text-muted;
+  }
 }
 
-h1 {
-  font-size: 2.5em;
+// === IMPROVED IMAGES ===
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
 }
 
-h2 {
-  font-size: 2em;
-}
-
-h3 {
-  font-size: 1.5em;
-}
-
-// Utility Klassen
+// === UTILITY CLASSES ===
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 vars.$space-4;
+  
+  @media (min-width: vars.$breakpoint-sm) {
+    padding: 0 vars.$space-6;
+  }
+  
+  @media (min-width: vars.$breakpoint-lg) {
+    padding: 0 vars.$space-8;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// === FOCUS MANAGEMENT ===
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}
+
+// === PRINT STYLES ===
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  
+  img {
+    page-break-inside: avoid;
+  }
+  
+  h2,
+  h3,
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+
+// === ANIMATIONS ===
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// === SELECTION STYLES ===
+::selection {
+  background-color: vars.$color-primary;
+  color: vars.$color-text-light;
+}
+
+::-moz-selection {
+  background-color: vars.$color-primary;
+  color: vars.$color-text-light;
+}
+
+// === LOADING STATES ===
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid vars.$color-primary;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// === MODERN GLASS EFFECT ===
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+// === MODERN CARD STYLES ===
+.card {
+  background: vars.$color-bg-card;
+  border-radius: vars.$radius-2xl;
+  box-shadow: vars.$shadow-sm;
+  border: 1px solid vars.$color-border;
+  transition: all vars.$transition-base;
+  
+  &:hover {
+    box-shadow: vars.$shadow-lg;
+    transform: translateY(-2px);
+  }
 }

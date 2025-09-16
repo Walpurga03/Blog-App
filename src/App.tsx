@@ -1,6 +1,5 @@
 import "./App.scss";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./i18n";
 import ModernHome from "./components/Home/ModernHome";
 import BlogOverview from "./components/BlogOverview/BlogOverview";
 import BlogPost from "./components/BlogPost/BlogPost";

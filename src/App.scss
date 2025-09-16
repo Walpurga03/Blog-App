@@ -1,22 +1,13 @@
 
 @use './styles/variables.scss' as vars;
 
+// === ROOT CONTAINER ===
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 1rem;
-}
-
-body {
-  margin: 0;
-  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Arial', sans-serif;
-  background: linear-gradient(120deg, vars.$color-bg 0%, vars.$color-bg-dark 100%);
+  width: 100%;
   min-height: 100vh;
-  color: vars.$color-text;
-  line-height: 1.6;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  background: vars.$color-bg;
 }
 
 .blog-container {

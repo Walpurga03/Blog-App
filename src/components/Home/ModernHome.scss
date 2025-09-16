@@ -3,55 +3,257 @@
 .modern-home {
   min-height: 100vh;
   background: linear-gradient(135deg, vars.$color-primary 0%, vars.$color-secondary 100%);
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 0;
+  overflow: hidden;
+
+  // Subtile Hintergrund-Pattern für mehr Tiefe
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    z-index: 1;
+  }
 
   .container {
+    position: relative;
+    z-index: 2;
     text-align: center;
-    color: vars.$color-text;
-    max-width: 800px;
-    padding: 0 1rem;
+    color: vars.$color-text-light;
+    max-width: 900px;
+    padding: vars.$space-8 vars.$space-4;
 
     h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      line-height: 1.2;
+      font-family: vars.$font-heading;
+      font-size: clamp(vars.$text-4xl, 5vw, vars.$text-6xl);
+      font-weight: vars.$font-extrabold;
+      margin-bottom: vars.$space-6;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      line-height: vars.$leading-tight;
+      letter-spacing: -0.02em;
+      
+      background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.9) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      
+      // Fallback für ältere Browser
+      @supports not (background-clip: text) {
+        color: vars.$color-text-light;
+      }
     }
 
     p {
-      font-size: 1.25rem;
+      font-size: vars.$text-xl;
+      font-weight: vars.$font-normal;
       opacity: 0.95;
-      line-height: 1.6;
-      margin-bottom: 2rem;
+      line-height: vars.$leading-relaxed;
+      margin-bottom: vars.$space-10;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     .hero-actions {
-      margin-top: 2rem;
+      margin-top: vars.$space-10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: vars.$space-4;
+
+      @media (min-width: vars.$breakpoint-sm) {
+        flex-direction: row;
+        justify-content: center;
+        gap: vars.$space-6;
+      }
 
       .btn {
-        display: inline-block;
-        padding: 1rem 2rem;
-        font-size: 1.1rem;
-        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: vars.$space-2;
+        padding: vars.$space-5 vars.$space-8;
+        font-size: vars.$text-lg;
+        font-weight: vars.$font-semibold;
         text-decoration: none;
-        border-radius: 12px;
-        transition: all 0.3s ease;
+        border-radius: vars.$radius-xl;
+        transition: all vars.$transition-base;
         cursor: pointer;
+        border: 2px solid transparent;
+        min-width: 200px;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+
+        // Subtle animation on load
+        animation: fadeInUp 0.8s ease 0.3s both;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+          transition: left 0.5s ease;
+        }
+
+        &:hover::before {
+          left: 100%;
+        }
 
         &.btn-primary {
-          background: vars.$color-bg;
+          background: vars.$color-bg-card;
           color: vars.$color-primary;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          box-shadow: vars.$shadow-lg;
+          backdrop-filter: blur(10px);
 
           &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px);
+            box-shadow: vars.$shadow-2xl;
+            background: vars.$color-gray-50;
+          }
+
+          &:active {
+            transform: translateY(-1px);
+            box-shadow: vars.$shadow-md;
           }
         }
+
+        &.btn-secondary {
+          background: transparent;
+          color: vars.$color-text-light;
+          border-color: rgba(255, 255, 255, 0.3);
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+          }
+        }
+      }
+    }
+  }
+
+  // Floating elements for visual interest
+  .floating-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+
+    .element {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: vars.$radius-full;
+      animation: float 6s ease-in-out infinite;
+
+      &:nth-child(1) {
+        width: 80px;
+        height: 80px;
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+
+      &:nth-child(2) {
+        width: 60px;
+        height: 60px;
+        top: 60%;
+        right: 15%;
+        animation-delay: 2s;
+      }
+
+      &:nth-child(3) {
+        width: 40px;
+        height: 40px;
+        bottom: 30%;
+        left: 20%;
+        animation-delay: 4s;
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-20px) rotate(120deg);
+  }
+  66% {
+    transform: translateY(-10px) rotate(240deg);
+  }
+}
+
+// Responsive Design
+@media (max-width: vars.$breakpoint-md) {
+  .modern-home {
+    .container {
+      padding: vars.$space-6 vars.$space-4;
+
+      h1 {
+        font-size: vars.$text-4xl;
+        margin-bottom: vars.$space-4;
+      }
+
+      p {
+        font-size: vars.$text-lg;
+        margin-bottom: vars.$space-8;
+      }
+
+      .hero-actions {
+        margin-top: vars.$space-8;
+
+        .btn {
+          padding: vars.$space-4 vars.$space-6;
+          font-size: vars.$text-base;
+          min-width: 180px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: vars.$breakpoint-sm) {
+  .modern-home {
+    .container {
+      padding: vars.$space-4 vars.$space-3;
+
+      h1 {
+        font-size: vars.$text-3xl;
+      }
+
+      p {
+        font-size: vars.$text-base;
+      }
+
+      .hero-actions .btn {
+        min-width: 160px;
+        padding: vars.$space-3 vars.$space-5;
       }
     }
   }

@@ -1,3 +1,5 @@
+import bm1370ChipImage from '../assets/BM1370-Chip.webp';
+
 export interface BlogPost {
   id: string;
   title: string;
@@ -12,33 +14,74 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    id: "solo-mining-grundlagen",
-    title: "Solo Bitcoin Mining: Die Grundlagen",
-    subtitle: "Alles was du über Solo Mining wissen musst",
+    id: "BM1370-ASIC-Chip-Technische-Spezifikationen",
+    title: "Der BM1370 ASIC-Chip: Technische Spezifikationen und Anwendung im Bitcoin-Mining",
+    subtitle: "Open-Source-Integration mit deutscher Fertigung",
     author: "Bitcoin Mining Community",
     publishDate: "2025-09-15",
-    readTime: "8 min",
-    tags: ["Solo Mining", "Bitcoin", "Grundlagen"],
+    readTime: "12 min",
+    tags: ["ASIC", "BM1370", "Bitaxe", "Technik", "Made in Germany"],
     featured: true,
-    content: `
-// ... existing content ...
-`
+    content: `Der BM1370 ist ein Application-Specific Integrated Circuit (ASIC), der speziell für SHA-256-Hash-Berechnungen im Bitcoin-Mining optimiert ist. Er validiert Transaktionen effizient durch parallele Verarbeitung von Hash-Operationen. Dieser Artikel analysiert die Kerntechnologien, Leistungsmerkmale und Integration in Mining-Geräte wie dem Bitaxe 601 Gamma.  
+
+![Der BM1370 Chip auf einem Bitaxe Gamma](${bm1370ChipImage})
+*BM1370-Chip im Bitaxe Gamma: Open-Source-Integration mit deutscher Fertigung.*  
+
+## Technische Spezifikationen des BM1370  
+
+Der BM1370 basiert auf einem 7-nm-Fertigungprozess und integriert eine hohe Transistordichte für optimierte SHA-256-Performance. Wichtige Parameter:  
+
+- Hashrate: Bis zu 1,30 TH/s in optimierten Konfigurationen (z. B. Bitaxe 601 Gamma Solomining-Edition), eine Steigerung um 20 % gegenüber Basis-Setups.  
+- Energieeffizienz: 15 J/TH, was einen Stromverbrauch von ca. 20 W bei Volllast ermöglicht.  
+- Prozess-Technologie: 7-nm-FinFET, reduziert Wärmeentwicklung und ermöglicht höhere Transistordichte (ca. 10 Milliarden pro Die).  
+- Thermische Stabilität: Integriertes Design minimiert Junction-Temperaturen unter 80 °C bei Übertaktung; kompatibel mit passiver oder aktiver Kühlung.  
+
+Diese Merkmale resultieren aus einer spezialisierten Architektur, die Pipeline-Optimierungen und Clock-Gating für geringe Idle-Verluste nutzt.  
+
+## Integration in SHA-256-Mining-Systeme  
+
+Der BM1370 wurde primär für den Bitmain Antminer S21 Pro konzipiert, erweist sich jedoch in Open-Source-Plattformen als vielseitig.  
+
+- Bitaxe 601 Gamma (Solomining-Edition): Der Chip treibt eine Hashrate von 1,30 TH/s bei 20 W; Firmware-Optimierungen (z. B. via ESP32-Mikrocontroller) ermöglichen Solo- oder Pool-Betrieb. Deutsche Fertigung integriert verbesserte Kühlkörper für thermische Dichte von < 50 W/cm².  
+- Bitmain Antminer S21 Pro: In skalierbaren Farmen erreicht er 200 TH/s pro Einheit bei 3500 W, mit Effizienz von 17,5 J/TH; der BM1370 trägt zu einer Reduktion des Gesamtverbrauchs um 15 % bei.  
+
+Die Kompatibilität mit Open-Source-Firmware (z. B. AxeOS) erlaubt Anpassungen wie dynamische Clock-Scaling.  
+
+## Wirtschaftlich-technische Bewertung  
+
+Unter Berücksichtigung der aktuellen Netzwerk-Difficulty (ca. 90 TH/s) und Block-Rewards (3,125 BTC) ergibt sich folgende Analyse:  
+
+| Parameter | Wert | Auswirkung |  
+|-----------|------|------------|  
+| Hashrate pro Einheit | 1,30 TH/s | Beitrag zur globalen Hasrate: ~0,0014 % |  
+| Stromverbrauch | 20 W (15 J/TH) | Monatliche Kosten bei 0,30 €/kWh: ~4 € |  
+| Break-even-Zeit | < 6 Monate (bei Pool-Payouts) | Abhängig von Difficulty-Wachstum (aktuell +5 %/Monat) |  
+| Vergleich zu Vorgängern (z. B. BM1397) | +25 % Effizienz | Reduzierter CO₂-Fußabdruck: ~0,5 kg/Monat |  
+
+Für Solo-Mining im CK-Pool beträgt die Erfolgs-Wahrscheinlichkeit pro Block ~1:77.000 bei 1,30 TH/s. Die Skalierbarkeit erlaubt Clustering mehrerer Einheiten für lineare Hashrate-Steigerung.  
+
+## Zusammenfassung  
+
+Der BM1370 definiert aktuelle Standards in ASIC-Mining durch 7-nm-Effizienz und SHA-256-Optimierung. In der Solomining-Edition des Bitaxe Gamma maximiert er Leistung bei minimalem Verbrauch. Für detaillierte Implementierungen: [Bitaxe Gamma im Shop](/).  
+
+*Technische Anfragen: Kontaktieren Sie uns.*`
   },
+
   {
-    id: 'bm1370-asic-chip-das-herzstueck-unserer-bitaxe-miner',
+    id: 'BM1370-ASIC-Chip-Herzstueck-Bitaxe-Gamma',
     title: 'Der BM1370 ASIC-Chip: Das Herz des Bitaxe Gamma',
     subtitle: 'Ein technischer Einblick in den Motor des modernen Bitcoin-Minings',
     author: 'Solomining',
     publishDate: '2025-09-16',
-    readTime: '9 min',
-    tags: ['ASIC', 'BM1370', 'Bitaxe', 'Technik', 'Made in Germany'],
+    readTime: '14 min',
+    tags: ['ASIC', 'BM1370', 'Bitaxe', 'Solomining', 'Made in Germany'],
     featured: true,
     content: `
-### Der BM1370 ASIC-Chip: Das schlagende Herz des Bitaxe Gamma
+### Das schlagende Herz des Bitaxe Gamma
 
 Der BM1370 ASIC-Chip ist ein technologisches Meisterwerk im SHA-256-Mining und setzt neue Maßstäbe in Effizienz und Leistung. Als Herzstück von Geräten wie dem **Bitaxe 601 Gamma**, den wir bei Solomining anbieten, ermöglicht dieser Chip eine Performance, die vor wenigen Jahren noch undenkbar war, ohne dabei die Energieeffizienz zu vernachlässigen.
 
-![Der BM1370 Chip auf einem Bitaxe Gamma](https://raw.githubusercontent.com/Skot9000/Bitaxe/main/images/bitaxe_gamma_rev4_full.png)
+![Der BM1370 Chip auf einem Bitaxe Gamma](${bm1370ChipImage})
 *Der BM1370 Chip auf einem Bitaxe Gamma, dem Open-Source-Projekt von @Skot9000. Bei Solomining erhalten Sie diesen Miner in einer optimierten "Made in Germany"-Qualität.*
 
 ### Technische Schlüsselfunktionen des BM1370
@@ -57,7 +100,7 @@ Obwohl der BM1370 ursprünglich für den Bitmain Antminer S21 Pro konzipiert wur
 
 ### Lohnt sich der BM1370 ASIC-Chip?
 
-Für Solo-Miner, die am "Lottery-Mining" auf Pools wie dem CK-Pool teilnehmen, ist die Rechnung einfach: Mit minimalen Stromkosten hat man jede Minute die Chance auf den vollen Block-Reward. Der Bitaxe Gamma mit dem BM1370 ist das perfekte Werkzeug dafür – ein Stück dezentrale Zukunft, angetrieben von Open-Source-Technologie.
+Für Solo-Miner, die am "Lottery-Mining" auf Pools wie dem CK-Pool teilnehmen, ist die Rechnung einfach: Mit minimalen Stromkosten hat man jede ~10 Minuten die Chance auf den vollen Block-Reward. Der Bitaxe Gamma mit dem BM1370 ist das perfekte Werkzeug dafür – ein Stück dezentrale Zukunft, angetrieben von Open-Source-Technologie.
 
 Die Investition in einen Miner mit BM1370-Chip ist eine Entscheidung für langfristige Rentabilität, besonders in einem Umfeld steigender Mining-Schwierigkeit. Das Open-Source-Potenzial des Bitaxe-Projekts fördert zudem eine wachsende Community, die ständig an der Optimierung von Firmware und Software arbeitet.
 
