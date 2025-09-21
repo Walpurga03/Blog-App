@@ -163,7 +163,7 @@ Beim **Solo Mining** schürfst du vollkommen eigenständig. Du nutzt deine eigen
 ### Für Solo Mining:
 - **Eigener Bitcoin-Knoten:** Unbedingt einen eigenen, pruned oder vollständigen Knoten betreiben.
 - **Mining-Software:** Nutze Tools wie Public Pool (selbstgehostet) oder DATUM zur Erzeugung eigener Blockvorlagen.
-- **Hardware-Empfehlung:** Unser Flaggschiff, der CmRat, eignet sich hervorragend als Bitcoin-Vollknoten und unterstützt Systeme wie Umbrel oder StartOS.
+- **Hardware-Empfehlung:** Unser Flaggschiff, der NerdQaxe++ - Made in Germany.
 
 ### Für Lottery Mining:
 - **Gehostete Lösungen:** Optionen wie Public Pool (gehostet) oder CK Pool (Solo CK) bieten einfache Setups.
