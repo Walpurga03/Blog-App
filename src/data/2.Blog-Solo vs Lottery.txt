@@ -1,0 +1,85 @@
+Solo Mining vs. Lottery Mining: Die wichtigsten Unterschiede, die du kennen solltest  
+Veröffentlicht am 3. August 2025  
+Kategorie: Guides
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Was ist Solo Mining?
+
+Beim **Solo Mining** schürfst du vollkommen eigenständig. Du nutzt deine eigene Hardware und betreibst einen eigenen vollständigen Bitcoin-Knoten.
+
+- **Direkte Netzwerkverbindung:** Es gibt keinen Mining-Pool oder Mittelsmann.
+- **Volle Blockbelohnung:** Findest du einen gültigen Block, erhältst du den gesamten Reward inklusive Transaktionsgebühren.
+- **Vertrauenslos:** Du überprüfst deine eigenen Blockvorlagen und versendest die Blöcke direkt an das Netzwerk.
+- **Risiko:** Du trägst 100 % des Variationsrisikos – ohne Block, kein Reward.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Was ist Lottery Mining?
+
+**Lottery Mining** wird häufig mit Solo Mining verwechselt, unterscheidet sich jedoch grundlegend:
+
+- Du arbeitest mit einem **Solo-Mining-Pool** (z. B. CKPool oder public-pool.io).
+- Der Pool übernimmt technische Aufgaben wie den Betrieb eines vollständigen Knotens und das Erstellen von Blockvorlagen.
+- **Belohnung:** Bei einem Blockfund erhältst du fast den vollen Reward (abzüglich einer kleinen Pool-Gebühr).
+- **Vereinfachter Einstieg:** Du musst keinen eigenen Knoten betreiben, was den technischen Aufwand senkt.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Die Kernunterschiede auf einen Blick
+
+| Merkmal                                      | Solo Mining                    | Lottery Mining (über Solo-Pool)           |
+|----------------------------------------------|--------------------------------|-------------------------------------------|
+| **Bitcoin-Knoten**                           | Eigener vollständiger Knoten ✅  | Pool-Knoten ❌                             |
+| **Blockbelohnung bei Erfolg**                | 100 % der Belohnung            | ca. 98 % (minus Pool-Gebühr)              |
+| **Eigenbetrieb eines vollständigen Knotens** | Erforderlich ✅                | Nicht erforderlich ❌                     |
+| **Einrichtungsaufwand**                      | Höher                          | Geringer                                  |
+| **Zahlungsfrequenz**                         | Sehr selten                    | Sehr selten                               |
+| **Vertrauensniveau**                         | Vollständig vertrauenslos      | Teilweise vertrauensvoll (Pool-Betreiber) |
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Warum wählen Menschen beide Methoden?
+
+### Solo Mining
+- **Souveränität & Kontrolle:** Du betreibst deine eigene Infrastruktur und hast volle Kontrolle.
+- **Technische Herausforderung:** Erfordert fundierte Kenntnisse und den Betrieb eines eigenen Knotens.
+- **Reward-Struktur:** Hoher Reward, jedoch mit seltenen Auszahlungen.
+
+### Lottery Mining
+- **Einfacherer Einstieg:** Kein eigener Knoten nötig – der Pool übernimmt die technische Infrastruktur.
+- **Reduzierter Aufwand:** Weniger Komplexität bei der Einrichtung.
+- **Risiko & Gewinn:** Du trägst das Risiko, erhältst aber nahezu den vollen Reward bei Blockfund.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Technische Lösungen und Empfehlungen
+
+### Für Solo Mining:
+- **Eigener Bitcoin-Knoten:** Unbedingt einen eigenen, pruned oder vollständigen Knoten betreiben.
+- **Mining-Software:** Nutze Tools wie Public Pool (selbstgehostet) oder DATUM zur Erzeugung eigener Blockvorlagen.
+- **Hardware-Empfehlung:** Unser Flaggschiff, der CmRat, eignet sich hervorragend als Bitcoin-Vollknoten und unterstützt Systeme wie Umbrel oder StartOS.
+
+### Für Lottery Mining:
+- **Gehostete Lösungen:** Optionen wie Public Pool (gehostet) oder CK Pool (Solo CK) bieten einfache Setups.
+- **Plug-and-Play:** Konfiguriere deinen ASIC-Miner mit der Stratum-Adresse des Pools und deiner Bitcoin-Adresse.
+- **Effizienz:** Du profitierst von nahezu voller Reward-Auszahlung bei minimalem technischem Aufwand.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Häufige Missverständnisse
+
+- **"Wenn ich CKPool benutze, schürfe ich solo."**  
+  → Korrekt ist: Du nimmst im Lotterie-Modus über einen Solo-Pool teil, da du keinen eigenen Knoten betreibst.
+
+- **"Einfach einen Miner anschließen und reich werden."**  
+  → Unabhängig von der Methode bleibt die Chance, einen Block ohne erheblichen Hashpower zu finden, sehr gering.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Fazit
+
+Ob du dich für **Solo Mining** oder **Lottery Mining** entscheidest, beide Methoden tragen zur Dezentralisierung des Bitcoin-Netzwerks bei und bieten jeweils eigene Vorzüge und Herausforderungen:
+
+- **Solo Mining** setzt auf vollständige Kontrolle und direkte Netzwerkbeteiligung – allerdings auf Kosten höherer Komplexität.
+- **Lottery Mining** bietet einen einfacheren Einstieg mit nahezu vollem Reward, wenn auch mit geringem technischen Aufwand.
+
+**Wichtig:** Beide Methoden sind Wetten auf eine große Chance. Achte darauf, dich umfassend zu informieren und deine technischen Möglichkeiten realistisch einzuschätzen.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Brauchbare Hardware zum Einstieg
+
+Wenn du den Einstieg ins Solo- oder Lottery Mining wagen möchtest, schau bei **Solomining** vorbei. Dort findest du eine große Auswahl an sofort einsatzbereiter Mining-Hardware, insbesondere diverse Bitaxe-Modelle – egal, ob du eine vollständige Selbsthosting-Lösung für Solo Mining oder einen kleinen, energieeffizienten Miner zum Ausprobieren suchst.
