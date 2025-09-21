@@ -312,7 +312,6 @@ Im Laufe der Zeit trocknet die Paste aus oder verliert ihre Wirksamkeit – insb
 4. Eine reiskorngroße Menge neuer Paste in die Mitte des Chips auftragen.  
 5. Kühlkörper gleichmäßig und fest wieder montieren.  
 6. Gerät vollständig wieder zusammensetzen und testen.  
-   → Einen Guide mit Fotos findest du hier: [Link]
 
 **Empfohlene Wärmeleitpaste:** Noctua NT-H2  
 **Austauschintervall:** Alle 12–18 Monate, bei intensiver Nutzung und Übertaktung ggf. alle 6 Monate.
@@ -435,7 +434,7 @@ Die Blockbelohnung halbiert sich etwa alle vier Jahre in einem Prozess, der als 
 ## 3. Aktuelle Entwicklungen und Herausforderungen
 
 ### Energieverbrauch und Nachhaltigkeit
-- **Hoher Energiebedarf:** Bitcoin-Mining benötigt jährlich etwa 170 Terawattstunden – vergleichbar mit dem Stromverbrauch ganzer Länder.
+- **Hoher Energiebedarf:** Bitcoin-Mining benötigt jährlich etwa 170 Terawattstunden (2025) – vergleichbar mit dem Stromverbrauch ganzer Länder.
 - **Nachhaltigkeitsansatz:** Miner können überschüssige erneuerbare Energie (z. B. aus Hydro-, Photovoltaik- oder Windkraftanlagen) nutzen, was den Ausbau nachhaltiger Energiequellen fördert.
 
 ### Regulatorische Entwicklungen
